@@ -75,15 +75,6 @@ body {
   font-family: sans-serif;
   margin: 0;
 }
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 20px;
-  background-color: var(--primary-color);
-  color: var(--secondary-color);
-  border-bottom: 5px solid var(--tertiary-color);
-}
 .app-name {
   font-size: 1.5em;
   font-weight: bold;
@@ -91,50 +82,11 @@ header {
 #form {
   display: flex;
 }
-.search {
-  background-color: transparent;
-  border: 2px solid var(--secondary-color);
-  border-radius: 50px;
-  font-size: 1rem;
-  padding: 1rem;
-  color: var(--secondary-color);
-}
-.search::placeholder {
-  color: var(--secondary-color);
-}
-.search:focus {
-  outline: var(--tertiary-color);
-}
 .header-buttons {
   display: flex;
   gap: 10px;
 }
-#logoutButton,
-#dashboardLink {
-  background-color: var(--secondary-color);
-  border-radius: 25px;
-  color: var(--primary-color);
-  font-size: medium;
-  font-weight: 500;
-  padding: 8px 15px;
-  cursor: pointer;
-  text-align: center;
-  text-decoration: none;
-}
-#logoutButton:hover,
-#dashboardLink:hover {
-  background-color: #e9877e;
-}
-#dashboardLink a {
-  text-decoration: none;
-  color: var(--primary-color);
-}
-#welcomeMessage {
-  text-align: center;
-  margin: 20px 0;
-  color: var(--primary-color);
-  font-size: 1.5rem;
-}
+
 table {
   width: 95%;
   border-collapse: collapse;
