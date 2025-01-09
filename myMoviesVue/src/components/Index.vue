@@ -3,13 +3,18 @@
     <header>
       <div class="app-name">Movie App</div>
       <form @submit.prevent="handleSearch" id="form">
-        <input 
-          type="text" 
-          v-model="searchQuery" 
-          placeholder="Search..." 
-          class="search" 
-        />  
+        <input
+          type="text"
+          v-model="searchQuery"
+          placeholder="Search..."
+          class="search"
+        />
       </form>
+
+      <button id="logoutButton" @click="toggleLayouts">
+        Change Layout: {{ buttonText }}
+      </button>
+
       <div class="header-buttons" v-if="isLoggedIn">
         <button id="logoutButton" @click="logout">
           <span class="icon">🔒</span> Logout
@@ -23,12 +28,10 @@
 
     <div id="welcomeMessage" v-html="welcomeMessage"></div>
 
-    <main id="main">
-      <div 
-        v-for="movie in movies" 
-        :key="movie.id" 
-        class="movie"
-      >
+    <layout v-show="isChangeView" :movies="movies"></layout>
+
+    <main id="main" v-show="!isChangeView">
+      <div v-for="movie in movies" :key="movie.id" class="movie">
         <img :src="IMAGE_PATH + movie.poster_path" :alt="movie.title" />
         <div class="movie-info">
           <h3>{{ movie.title }}</h3>
@@ -46,10 +49,14 @@
 </template>
 
 <script>
+import Layout from "./Layout.vue";
+
 export default {
+  components: { Layout },
   data() {
     return {
       movies: [],
+      isChangeView: false,
       searchQuery: "",
       isLoggedIn: false,
       IMAGE_PATH: "https://image.tmdb.org/t/p/w300/",
@@ -65,6 +72,9 @@ export default {
       return user
         ? `Hello ${user.name}, Hunt your fav movies!`
         : `Hello User, please <a href="/login">login</a>`;
+    },
+    buttonText() {
+      return this.isChangeView ? "🪟" : "📃";
     },
   },
   methods: {
@@ -99,6 +109,10 @@ export default {
       this.isLoggedIn = false;
       window.location.href = "/login";
     },
+    toggleLayouts() {
+      console.log("yes button is clicked");
+      this.isChangeView = !this.isChangeView; // Toggle between layouts
+    },
   },
   mounted() {
     this.getMovies(this.API_URL);
@@ -111,7 +125,6 @@ export default {
 </script>
 
 <style>
-
 * {
   box-sizing: border-box;
 }
