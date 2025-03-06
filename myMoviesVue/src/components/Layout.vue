@@ -1,7 +1,7 @@
 <template>
   <div>
     <table v-for="movie in movies" :key="movie.id" class="movie">
-      <a class="tableRow" @click="handlePopup(movie)">
+      <!-- <a class="tableRow" @click="handlePopup(movie)"> -->
         <tr>
           <td>
             <img :src="IMAGE_PATH + movie.poster_path" :alt="movie.title" />
@@ -14,8 +14,11 @@
               {{ movie.vote_average }}
             </span>
           </td>
+          <!-- <td>
+            <button @click="handleChild">go to child</button>
+          </td> -->
         </tr>
-      </a>
+      <!-- </a> -->
     </table>
 
     <div v-if="isPopupVisible" class="popUpbox">
@@ -35,6 +38,8 @@
 </template>
   
   <script>
+// import Child from './child.vue';
+
 export default {
   props: {
     movies: {
@@ -65,6 +70,10 @@ export default {
       this.popUpdata = movie;
       this.isPopupVisible = true;
     },
+
+    // handleChild(){
+    //   window.href.location=Child
+    // }
   },
 };
 </script>
